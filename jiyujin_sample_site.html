@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美健サポート 自由人</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Noto+Serif+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#f8f2e8;color:#1a1008;font-family:'Noto Serif JP',serif;font-weight:300;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .4s}
+.nav-inner{padding:20px 52px;display:flex;justify-content:space-between;align-items:center}
+nav.s{background:rgba(248,242,232,.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(139,100,50,.12)}
+.n-logo{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:400;letter-spacing:6px;color:#3a1a08;text-decoration:none}
+.n-links{display:flex;gap:36px;list-style:none}
+.n-links a{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:400;color:#8a6a40;text-decoration:none;transition:color .3s}
+.n-links a:hover{color:#5c1a2e}
+.nav-progress{height:1px;background:rgba(92,26,46,.08)}
+.nav-progress-bar{height:100%;background:linear-gradient(90deg,#5c1a2e,#c09a5a);width:0%}
+
+/* ── S1: 縦書き×横書き混在ヒーロー ── */
+.s1{
+  min-height:100vh;background:#f8f2e8;
+  display:grid;grid-template-columns:100px 1fr 100px;
+  position:relative;overflow:hidden;padding-top:70px;
+}
+/* 左：縦書きのキャッチ */
+.s1-left{
+  background:#3a1a08;
+  writing-mode:vertical-rl;
+  display:flex;align-items:center;justify-content:center;
+  padding:40px 0;
+  font-family:'Noto Serif JP',serif;font-size:13px;font-weight:200;
+  color:rgba(248,242,232,.5);letter-spacing:4px;
+  position:relative;overflow:hidden;
+}
+.s1-left::after{
+  content:'美';
+  position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);
+  font-size:180px;font-weight:500;color:rgba(248,242,232,.04);
+  line-height:1;
+}
+/* 中央：メインコンテンツ */
+.s1-center{
+  display:flex;flex-direction:column;
+  padding:60px 80px;
+  position:relative;
+}
+.s1-en{
+  font-family:'Cinzel',serif;
+  font-size:9px;letter-spacing:6px;text-transform:uppercase;font-weight:400;
+  color:#c09a5a;display:block;margin-bottom:48px;
+}
+/* タイトル：縦書きと横書きを重ねる */
+.s1-title-wrap{position:relative;margin-bottom:60px}
+.s1-title-ja{
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(52px,8vw,120px);font-weight:200;
+  color:#1a1008;line-height:1;letter-spacing:8px;
+  display:block;
+}
+.s1-title-ja .accent{
+  font-weight:500;color:#5c1a2e;
+  display:block;margin-left:1em;
+}
+.s1-career{
+  position:absolute;right:0;top:0;
+  writing-mode:vertical-rl;
+  font-family:'Cinzel',serif;
+  font-size:11px;letter-spacing:3px;font-weight:600;
+  color:rgba(92,26,46,.15);
+  text-transform:uppercase;
+}
+.s1-body{
+  max-width:480px;
+  font-size:14px;font-weight:200;color:#5a4030;
+  line-height:3;letter-spacing:.5px;margin-bottom:56px;
+}
+.s1-body strong{font-weight:400;color:#3a1a08}
+.s1-cta-row{display:flex;gap:20px;align-items:center}
+.btn-primary{
+  background:#5c1a2e;color:#f8f2e8;
+  padding:16px 40px;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;font-weight:400;
+  text-decoration:none;transition:background .3s,transform .2s;display:inline-block;
+}
+.btn-primary:hover{background:#7a2040;transform:translateY(-2px)}
+.btn-ghost{
+  font-family:'Noto Serif JP',serif;font-size:13px;font-weight:200;
+  color:#5c1a2e;text-decoration:none;letter-spacing:2px;
+  border-bottom:1px solid rgba(92,26,46,.3);padding-bottom:2px;
+  transition:border-color .3s;
+}
+.btn-ghost:hover{border-color:#5c1a2e}
+/* 右：縦書きの実績 */
+.s1-right{
+  background:#5c1a2e;
+  writing-mode:vertical-rl;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:40px;padding:40px 0;
+}
+.s1-right-num{
+  font-family:'Noto Serif JP',serif;
+  font-size:36px;font-weight:200;color:rgba(248,242,232,.9);
+  letter-spacing:2px;display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.s1-right-label{
+  font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(192,154,90,.7);font-weight:400;
+}
+
+/* ── S2: 30年の重さを見せる ── */
+.s2{display:grid;grid-template-columns:1fr 1fr;min-height:70vh}
+.s2-left{
+  background:#3a1a08;
+  padding:80px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;overflow:hidden;
+}
+.s2-bg-num{
+  position:absolute;bottom:-40px;right:-20px;
+  font-family:'Cinzel',serif;font-size:320px;font-weight:900;
+  color:rgba(255,255,255,.03);line-height:1;pointer-events:none;user-select:none;
+}
+.s2-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;text-transform:uppercase;font-weight:400;color:rgba(192,154,90,.6);display:block;margin-bottom:32px}
+.s2-heading{
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(28px,3.5vw,52px);font-weight:200;
+  color:#f8f2e8;line-height:1.6;letter-spacing:3px;
+}
+.s2-heading em{font-style:normal;color:#c09a5a;font-weight:400}
+.s2-divider{width:40px;height:1px;background:rgba(192,154,90,.4);margin:40px 0}
+.s2-quote{
+  font-family:'Noto Serif JP',serif;font-size:15px;font-weight:200;
+  color:rgba(248,242,232,.5);line-height:2.8;letter-spacing:.5px;font-style:italic;
+}
+.s2-right{
+  padding:80px;background:#f8f2e8;
+  display:flex;flex-direction:column;justify-content:center;gap:0;
+}
+.s2-point{
+  padding:36px 0;border-bottom:1px solid rgba(139,100,50,.12);
+  display:flex;gap:28px;align-items:flex-start;
+}
+.s2-point:first-child{padding-top:0}
+.s2-point:last-child{border-bottom:none}
+.s2-point-icon{
+  font-family:'Cinzel',serif;font-size:22px;font-weight:900;
+  color:#5c1a2e;opacity:.15;line-height:1;flex-shrink:0;padding-top:4px;
+}
+.s2-point-body{}
+.s2-point-title{
+  font-family:'Noto Serif JP',serif;font-size:17px;font-weight:400;
+  color:#1a1008;margin-bottom:10px;letter-spacing:1px;
+}
+.s2-point-text{font-size:13px;color:#6a5040;line-height:2.6;letter-spacing:.3px}
+
+/* ── S3: メニュー ── */
+.s3{background:#f0e8d8;padding:80px}
+.s3-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;text-transform:uppercase;font-weight:400;color:#c09a5a;display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.s3-tag::before{content:'';display:block;width:40px;height:1px;background:#c09a5a;opacity:.5}
+.s3-title{font-family:'Noto Serif JP',serif;font-size:clamp(32px,4vw,56px);font-weight:200;color:#3a1a08;letter-spacing:4px;margin-bottom:72px}
+.s3-items{display:flex;flex-direction:column;gap:0;max-width:800px}
+.s3-item{
+  display:grid;grid-template-columns:56px 1fr auto;gap:32px;align-items:start;
+  padding:40px 0;border-bottom:1px solid rgba(139,100,50,.12);
+  position:relative;
+}
+.s3-item::before{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:#5c1a2e;transition:width .5s}
+.s3-item:hover::before{width:100%}
+.s3-item:last-child{border-bottom:none}
+.s3-num{
+  font-family:'Cinzel',serif;font-size:28px;font-weight:900;
+  color:rgba(92,26,46,.1);line-height:1;padding-top:4px;
+}
+.s3-body{}
+.s3-category{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;font-weight:400;color:#c09a5a;display:block;margin-bottom:10px}
+.s3-item h3{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:400;color:#1a1008;margin-bottom:10px;letter-spacing:2px}
+.s3-item p{font-size:12px;color:#7a6050;line-height:2.4}
+.s3-price{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:200;color:#5c1a2e;white-space:nowrap;padding-top:4px}
+
+/* ── S4: ブライダル特集 ── */
+.s4{
+  background:#5c1a2e;
+  padding:100px 80px;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.s4::before{
+  content:'Bridal';position:absolute;right:-60px;bottom:-40px;
+  font-family:'Cinzel',serif;font-size:200px;font-weight:900;
+  color:rgba(255,255,255,.04);line-height:1;pointer-events:none;user-select:none;
+}
+.s4-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;text-transform:uppercase;font-weight:400;color:rgba(192,154,90,.6);display:block;margin-bottom:24px}
+.s4-title{
+  font-family:'Noto Serif JP',serif;font-size:clamp(28px,3.5vw,48px);font-weight:200;
+  color:#f8f2e8;line-height:1.6;letter-spacing:3px;margin-bottom:32px;
+}
+.s4-title em{font-style:normal;color:#c09a5a;font-weight:400}
+.s4-body{font-size:13px;font-weight:200;color:rgba(248,242,232,.6);line-height:3;letter-spacing:.3px;margin-bottom:40px}
+.s4-btn{
+  display:inline-block;background:#c09a5a;color:#1a1008;
+  padding:16px 40px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;font-weight:600;
+  text-decoration:none;transition:background .3s,transform .2s;
+}
+.s4-btn:hover{background:#d4b070;transform:translateY(-2px)}
+/* 右：装飾的な菱形 */
+.s4-visual{display:flex;align-items:center;justify-content:center}
+.s4-diamond{
+  width:320px;height:320px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(192,154,90,.25);
+  transform:rotate(45deg);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.s4-diamond::before{content:'';position:absolute;inset:20px;border:1px solid rgba(192,154,90,.12)}
+.s4-diamond-inner{transform:rotate(-45deg);text-align:center}
+.s4-diamond-text{
+  font-family:'Noto Serif JP',serif;font-size:20px;font-weight:200;
+  color:rgba(248,242,232,.6);letter-spacing:4px;line-height:2;
+}
+.s4-diamond-en{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;font-weight:400;color:rgba(192,154,90,.5);display:block;margin-top:8px}
+
+/* ── S5: アクセス ── */
+.s5{display:grid;grid-template-columns:1fr 1fr;min-height:60vh}
+.s5-left{background:#f8f2e8;padding:80px;display:flex;flex-direction:column;justify-content:space-between}
+.s5-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:5px;text-transform:uppercase;font-weight:400;color:#c09a5a;display:block;margin-bottom:32px}
+.s5-title{font-family:'Noto Serif JP',serif;font-size:clamp(36px,5vw,64px);font-weight:200;color:#1a1008;letter-spacing:4px;line-height:1;margin-bottom:56px}
+.s5-list{list-style:none}
+.s5-list li{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid rgba(139,100,50,.1)}
+.s5-list li:last-child{border-bottom:none}
+.s5-key{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;font-weight:400;color:#c09a5a;padding-top:2px}
+.s5-val{font-size:13px;color:#5a4030;line-height:1.8}
+.s5-right{background:#3a1a08;padding:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.s5-cta-tag{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;font-weight:400;color:rgba(192,154,90,.5)}
+.s5-tel{font-family:'Noto Serif JP',serif;font-size:clamp(18px,2.5vw,30px);font-weight:200;color:#f8f2e8;text-decoration:none;letter-spacing:3px;transition:opacity .3s;text-align:center}
+.s5-tel:hover{opacity:.7}
+.s5-note{font-size:12px;font-weight:200;color:rgba(248,242,232,.4);line-height:2.4;text-align:center}
+
+footer{background:#3a1a08;padding:36px 80px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(192,154,90,.1)}
+.f-logo{font-family:'Noto Serif JP',serif;font-size:16px;font-weight:200;letter-spacing:6px;color:rgba(248,242,232,.4)}
+.f-copy{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;color:rgba(248,242,232,.2)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+.reveal.v{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  nav .nav-inner{padding:14px 20px}
+  .n-links{display:none}
+  .s1{grid-template-columns:60px 1fr 60px}
+  .s1-center{padding:48px 24px}
+  .s1-right .s1-right-num{font-size:20px}
+  .s2{grid-template-columns:1fr}
+  .s2-left,.s2-right{padding:48px 24px}
+  .s3{padding:48px 24px}
+  .s3-item{grid-template-columns:1fr}
+  .s3-num{display:none}
+  .s4{grid-template-columns:1fr;padding:60px 24px;gap:40px}
+  .s4-visual{display:none}
+  .s5{grid-template-columns:1fr}
+  .s5-left,.s5-right{padding:48px 24px}
+  footer{flex-direction:column;gap:12px;padding:28px 24px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="n-logo">美健サポート　自由人</a>
+    <ul class="n-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#bridal">Bridal</a></li>
+      <li><a href="#access">Access</a></li>
+    </ul>
+  </div>
+  <div class="nav-progress"><div class="nav-progress-bar" id="pb"></div></div>
+</nav>
+
+<!-- S1 -->
+<section class="s1" id="top">
+  <div class="s1-left">キャリア三十年以上の技</div>
+  <div class="s1-center">
+    <span class="s1-en">Women's Shaving Esthe — Kadoma, Osaka</span>
+    <div class="s1-title-wrap">
+      <span class="s1-title-ja">
+        素肌と、
+        <span class="accent">向き合う。</span>
+      </span>
+      <div class="s1-career">30 Years of Craft</div>
+    </div>
+    <p class="s1-body">
+      キャリア<strong>30年以上</strong>の女性エステティシャンが、<br>
+      <strong>理容師免許</strong>の確かな技術で施術します。<br>
+      女性専用の、特別な空間で。
+    </p>
+    <div class="s1-cta-row">
+      <a href="#menu" class="btn-primary">Menu を見る</a>
+      <a href="#about" class="btn-ghost">About</a>
+    </div>
+  </div>
+  <div class="s1-right">
+    <div class="s1-right-num">
+      <span class="s1-right-label">Career</span>
+      30年以上
+    </div>
+    <div class="s1-right-num">
+      <span class="s1-right-label">License</span>
+      理容師免許
+    </div>
+    <div class="s1-right-num">
+      <span class="s1-right-label">Style</span>
+      女性専用
+    </div>
+  </div>
+</section>
+
+<!-- S2: 30年の重さ -->
+<section class="s2" id="about">
+  <div class="s2-left reveal">
+    <div>
+      <span class="s2-tag">Our Philosophy</span>
+      <div class="s2-heading">
+        <em>美しさ</em>とは、<br>
+        肌を磨くことではなく<br>
+        自分を大切にすること。
+      </div>
+    </div>
+    <div class="s2-bg-num">30</div>
+    <div class="s2-divider"></div>
+    <div class="s2-quote">「一人一人のお肌を見極め、こだわりのケアで美しく健康的な素肌へ導く。」</div>
+  </div>
+  <div class="s2-right reveal">
+    <div class="s2-point">
+      <div class="s2-point-icon">I</div>
+      <div class="s2-point-body">
+        <div class="s2-point-title">理容師免許取得の技術</div>
+        <p class="s2-point-text">シェービングには理容師免許が必要です。自由人では、資格を持つ女性エステティシャンが安心・安全に施術いたします。</p>
+      </div>
+    </div>
+    <div class="s2-point">
+      <div class="s2-point-icon">II</div>
+      <div class="s2-point-body">
+        <div class="s2-point-title">異国情緒漂う空間</div>
+        <p class="s2-point-text">日常から切り離された、異国情緒漂うプライベートな空間でお過ごしください。肩の力を抜いてリラックスしながら施術が受けられます。</p>
+      </div>
+    </div>
+    <div class="s2-point">
+      <div class="s2-point-icon">III</div>
+      <div class="s2-point-body">
+        <div class="s2-point-title">ブライダルにも対応</div>
+        <p class="s2-point-text">人生で最も輝く日のために。日常のスキンケアから花嫁様のためのブライダルシェービングエステまで対応しています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3: メニュー -->
+<section class="s3" id="menu">
+  <div class="s3-tag reveal">Treatment Menu</div>
+  <div class="s3-title reveal">施術メニュー</div>
+  <div class="s3-items">
+    <div class="s3-item reveal">
+      <div class="s3-num">01</div>
+      <div class="s3-body">
+        <span class="s3-category">Signature</span>
+        <h3>フェイスシェービングエステ</h3>
+        <p>産毛・うぶ毛を丁寧に除去し透明感のある素肌へ。理容師免許取得のエステティシャンが担当します。</p>
+      </div>
+      <div class="s3-price">要問合せ</div>
+    </div>
+    <div class="s3-item reveal">
+      <div class="s3-num">02</div>
+      <div class="s3-body">
+        <span class="s3-category">Care</span>
+        <h3>ハンドトリートメント</h3>
+        <p>手指・手の甲を集中ケア。乾燥・くすみ・ハリ不足にアプローチする女性のための手元ケア。</p>
+      </div>
+      <div class="s3-price">要問合せ</div>
+    </div>
+    <div class="s3-item reveal">
+      <div class="s3-num">03</div>
+      <div class="s3-body">
+        <span class="s3-category">Beauty</span>
+        <h3>美顔器トリートメント</h3>
+        <p>最新の美顔器を使用した本格フェイシャルケア。たるみ・毛穴・シミにアプローチします。</p>
+      </div>
+      <div class="s3-price">要問合せ</div>
+    </div>
+    <div class="s3-item reveal">
+      <div class="s3-num">04</div>
+      <div class="s3-body">
+        <span class="s3-category">Special</span>
+        <h3>ブライダルシェービングエステ</h3>
+        <p>特別な日のための集中ケア。挙式前の花嫁様に最高の素肌を。ご相談はお早めに。</p>
+      </div>
+      <div class="s3-price">要問合せ</div>
+    </div>
+  </div>
+</section>
+
+<!-- S4: ブライダル -->
+<section class="s4" id="bridal">
+  <div class="reveal">
+    <span class="s4-tag">Bridal Shaving Esthe</span>
+    <div class="s4-title">花嫁様へ、<br><em>特別な素肌</em>を。</div>
+    <p class="s4-body">人生で最も美しくあるべき日のために、特別なブライダルシェービングエステをご用意しています。挙式の1〜2週間前からのご相談をおすすめします。お肌の状態を見ながら最適なプランをご提案いたします。</p>
+    <a href="#access" class="s4-btn">ブライダルを相談する</a>
+  </div>
+  <div class="s4-visual reveal">
+    <div class="s4-diamond">
+      <div class="s4-diamond-inner">
+        <div class="s4-diamond-text">花嫁の<br>素肌へ</div>
+        <span class="s4-diamond-en">Bridal Esthe</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S5: アクセス -->
+<section class="s5" id="access">
+  <div class="s5-left reveal">
+    <div>
+      <span class="s5-tag">Access</span>
+      <div class="s5-title">アクセス</div>
+    </div>
+    <ul class="s5-list">
+      <li><span class="s5-key">Area</span><span class="s5-val">大阪府門真市（古川橋駅周辺）</span></li>
+      <li><span class="s5-key">Tel</span><span class="s5-val">050-1864-2612</span></li>
+      <li><span class="s5-key">Style</span><span class="s5-val">完全予約制 / 女性専用</span></li>
+      <li><span class="s5-key">Note</span><span class="s5-val">異国情緒漂う空間でお待ちしております</span></li>
+      <li><span class="s5-key">Map</span><span class="s5-val">Googleマップは受注後に設定予定</span></li>
+    </ul>
+  </div>
+  <div class="s5-right reveal">
+    <span class="s5-cta-tag">ご予約・ご相談</span>
+    <a href="tel:050-1864-2612" class="s5-tel">050-1864-2612</a>
+    <p class="s5-note">「どんなケアが合うかわからない」という方も<br>30年以上の経験からご提案します。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">美健サポート　自由人</div>
+  <div class="f-copy">© 2026 Bikken Support Jiyujin — Kadoma, Osaka</div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav'),pb=document.getElementById('pb');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('s',window.scrollY>60);
+  pb.style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%';
+},{passive:true});
+const obs=new IntersectionObserver((e)=>{e.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('v'),i*80);obs.unobserve(en.target)}})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
